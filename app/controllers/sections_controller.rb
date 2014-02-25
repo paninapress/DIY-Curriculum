@@ -13,6 +13,8 @@ before_filter :authenticate_user!, except: [:index, :show]
 
   def show
     @section = Section.find(params[:id])
+    course_params = params[:course_id]
+    gon.content_path = "/courses/#{course_params}/sections/#{@section.id}/contents.json"
   end
 
   def new

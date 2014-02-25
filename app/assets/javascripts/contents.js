@@ -1,7 +1,12 @@
 $(function(){
 
+  // show new form
+  var path = {path: gon.content_path};
+  var newFormHTML = HandlebarsTemplates.new_form(path);
+  $("#content1").append(newFormHTML);
+
   // listen for submit on #addContent
-  $("#new-content form").on("submit", function(event){
+  $("#content1 form").on("submit", function(event){
     event.preventDefault();
 
     // create newContent using
@@ -17,22 +22,22 @@ $(function(){
 
     // Grab url from form's action
     // specifically from #new-content form
-    $.post($("#new-content form").attr("action"), {content: newContent}).done(function(data){
+    $.post(gon.content_path, {content: newContent}).done(function(data){
         console.log(data);
 
       // Append this content
       var contentHTML = HandlebarsTemplates.contents(data);
-      $("#contents").append(contentHTML);
+      $("#content1").append(contentHTML);
     });
   });// <-- end of submit #addContent function
 
 
   // Display all content(s) on the page
   // WHAT'S THE URL? 
-  $.get($("#new-content form").attr("action")).done(function(data){
+  $.get(gon.content_path).done(function(data){
     $(data).each(function(index, contentItem){
       var contentHTML = HandlebarsTemplates.contents(contentItem);
-      $("#contents").append(contentHTML);
+      $("#content1").append(contentHTML);
     });
   });
 

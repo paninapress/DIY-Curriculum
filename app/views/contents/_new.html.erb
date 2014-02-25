@@ -1,8 +1,2 @@
-<div id="new-content" >
-  <%= form_for :content, url: course_section_contents_path(format: :json), method: :post do |c| %>
-    <%= c.text_field :source_url, placeholder: "Resource link" %>
-    <%= c.text_area :text, placeholder: "How did you use this resource?" %>
-    <%= c.submit "create", class: "button large" %>
-  <% end %>
-</div>
+
 
